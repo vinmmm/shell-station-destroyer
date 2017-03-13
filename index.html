@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Pong</title>
+    <style>
+    	* { padding: 0; margin: 0; background: #eccebe; }
+    	h1 { text-align: center; }
+    	canvas { background: #e66662; display: block; margin: 0 auto; }
+    	img { border: solid 1px;  margin:4px 8px 0px 0px; }
+    	.btn-shoot-div {text-align: center;}
+    	.btn-shoot {background: black; color: red;}
+    </style>
+</head>
+<body>
+
+<h1 ><img src="me.jpg" width="8%" height="8%">I Make A Video Game For You</h1> 
+
+
+
+<canvas id="myCanvas" width="480" height="320"></canvas>
+
+<div class="btn-shoot-div">
+	<input class="btn-shoot" type="button" value="Lightning" id="MyButton">
+</div>
+
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+var x = canvas.width -55;
+var y = canvas.height -270;
+var dx = -19;
+var dy = 12;
+
+//Square
+/*
+function drawSquare() {
+	ctx.beginPath();
+    ctx.rect(20, 40, 50, 50);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+}
+*/
+    
+function drawBall() {
+    ctx.beginPath();
+    ctx.arc(x, y, 10, 0, Math.PI*2);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+}
+
+function draw() {
+    ctx.clearRect(0, 10, canvas.width, canvas.height);
+    drawBall();
+    x += dx;
+    y += dy;
+    /*
+    drawSquare();
+    x += dx;
+    y += dy;
+    */
+}
+
+// Using a Js timing function to run over and over with with different sets of values to make the lightning bolt sprite appear to move.
+
+
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ pixi.js/4.0.0/pixi.min.js"></script>
+<script>
+	$(document).ready(function(){
+    $('#MyButton').click(function(){
+       setInterval(draw, 20);
+    });
+  });
+</script>
+</body>
+</html>
